@@ -1,3 +1,42 @@
+# Local instance
+
+This is my own variant of my local Compiler explorer instance. I add my own libraries such as DUNE. See
+https://www.youtube.com/watch?v=I2cKVRzJhS0 for setting this up
+
+- Run with VS code and run in the dev container. This will take a while. The building and the `post-create.sh` script
+  take some time.
+- Run `make`. This takes also a while...
+- `sudo apt update && sudo apt install -y lsb-release wget software-properties-common gnupg ca-certificates`
+- `wget https://apt.llvm.org/llvm.sh`
+- `chmod +x llvm.sh`
+- `sudo ./llvm.sh 16 all`
+
+- `cd workspaces/`
+- `sudo mkdir dune`
+- `cd dune`
+- `sudo git clone https://gitlab.dune-project.org/core/dune-common`
+- `sudo git clone https://gitlab.dune-project.org/simon.praetorius/dune-tensor.git`
+- Then create the file `etc/config/c++.local.properties` with the following content
+
+```cpp
+# Default settings for C++
+compilers=g++-12:/usr/bin/clang-16
+#################################
+#################################
+# Installed libs (See c++.amazon.properties for a scheme of libs group)
+libs=dunecommon:dunetensor
+libs.dunecommon.name=dune-common
+libs.dunecommon.versions=master
+libs.dunecommon.url=https://gitlab.dune-project.org/core/dune-common
+libs.dunecommon.versions.master.path=/workspaces/dune/dune-common
+
+libs.dunetensor.name=dune-tensor
+libs.dunetensor.versions=main
+libs.dunetensor.url=https://gitlab.dune-project.org/simon.praetorius/dune-tensor.git
+libs.dunetensor.versions.main.path=/workspaces/dune/dune-tensor
+
+```
+
 [![Build Status](https://github.com/compiler-explorer/compiler-explorer/workflows/Compiler%20Explorer/badge.svg)](https://github.com/compiler-explorer/compiler-explorer/actions?query=workflow%3A%22Compiler+Explorer%22)
 [![codecov](https://codecov.io/gh/compiler-explorer/compiler-explorer/branch/main/graph/badge.svg)](https://codecov.io/gh/compiler-explorer/compiler-explorer)
 

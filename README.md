@@ -17,6 +17,8 @@ https://www.youtube.com/watch?v=I2cKVRzJhS0 for setting this up
 - `sudo git clone https://gitlab.dune-project.org/core/dune-common`
 - `sudo git clone https://gitlab.dune-project.org/simon.praetorius/dune-tensor.git`
 - Then create the file `etc/config/c++.local.properties` with the following content
+- `make` again
+- open `http://127.0.0.1:10240/`
 
 ```cpp
 # Default settings for C++
